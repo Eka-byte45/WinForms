@@ -35,17 +35,20 @@
 			this.cbShowDate = new System.Windows.Forms.CheckBox();
 			this.cbShowWeekday = new System.Windows.Forms.CheckBox();
 			this.btnHideControls = new System.Windows.Forms.Button();
+			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
 			this.SuspendLayout();
 			// 
 			// labelTime
 			// 
 			this.labelTime.AutoSize = true;
+			this.labelTime.BackColor = System.Drawing.SystemColors.Highlight;
 			this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelTime.Location = new System.Drawing.Point(13, 14);
 			this.labelTime.Name = "labelTime";
 			this.labelTime.Size = new System.Drawing.Size(261, 51);
 			this.labelTime.TabIndex = 0;
 			this.labelTime.Text = "CurrentTime";
+			this.labelTime.MouseHover += new System.EventHandler(this.labelTime_MouseHover);
 			// 
 			// timer
 			// 
@@ -77,13 +80,20 @@
 			// btnHideControls
 			// 
 			this.btnHideControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.btnHideControls.Location = new System.Drawing.Point(43, 280);
+			this.btnHideControls.Location = new System.Drawing.Point(43, 264);
 			this.btnHideControls.Name = "btnHideControls";
 			this.btnHideControls.Size = new System.Drawing.Size(248, 67);
 			this.btnHideControls.TabIndex = 3;
 			this.btnHideControls.Text = "Hide controls";
 			this.btnHideControls.UseVisualStyleBackColor = true;
 			this.btnHideControls.Click += new System.EventHandler(this.btnHideControls_Click);
+			// 
+			// notifyIcon
+			// 
+			this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+			this.notifyIcon.Text = "System tray";
+			this.notifyIcon.Visible = true;
+			this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
 			// 
 			// MainForm
 			// 
@@ -94,6 +104,7 @@
 			this.Controls.Add(this.cbShowWeekday);
 			this.Controls.Add(this.cbShowDate);
 			this.Controls.Add(this.labelTime);
+			this.DoubleBuffered = true;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -112,6 +123,7 @@
 		private System.Windows.Forms.CheckBox cbShowDate;
 		private System.Windows.Forms.CheckBox cbShowWeekday;
 		private System.Windows.Forms.Button btnHideControls;
+		private System.Windows.Forms.NotifyIcon notifyIcon;
 	}
 }
 
