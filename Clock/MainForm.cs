@@ -17,6 +17,7 @@ namespace Clock
 			InitializeComponent();
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			SetVisibility(false);
 		}
 		void SetVisibility(bool visible)
 		{
@@ -48,18 +49,52 @@ namespace Clock
 
 		private void btnHideControls_Click(object sender, EventArgs e)
 		{
-			SetVisibility(false);
+			//SetVisibility(false);
+			SetVisibility(tsmiShowControls.Checked = false);
 		}
 
-		private void labelTime_MouseHover(object sender, EventArgs e)
-		{
-			SetVisibility(true);
-		}
+		//private void labelTime_MouseHover(object sender, EventArgs e)
+		//{
+		//	SetVisibility(true);
+		//}
 
 		private void notifyIcon_DoubleClick(object sender, EventArgs e)
 		{
-			this.TopMost = true;
-			this.TopMost = false;
+			if(!TopMost)
+			{
+				this.TopMost = true;
+				this.TopMost = false;
+			}
 		}
+
+		private void tsmiTopmost_Click(object sender, EventArgs e)
+		{
+			this.TopMost = tsmiTopmost.Checked;
+		}
+
+		private void tsmiShowControls_CheckedChanged(object sender, EventArgs e)
+		{
+			SetVisibility((sender as ToolStripMenuItem).Checked);
+			//Sender - отправитель события(Control,который присылал событие).
+			//Если на элемент окна (Control) воздействует пользователь при помощи клавиатуры или мыши,
+			//этот Control отправляет событие своему родителю, а родитель может обрабатывать или не обрабатывать это событие.
+
+		}
+
+		private void tsmiShowDate_CheckedChanged(object sender, EventArgs e) => cbShowDate.Checked = tsmiShowDate.Checked;
+
+		private void cbShowDate_CheckedChanged(object sender, EventArgs e) =>
+			tsmiShowDate.Checked = cbShowDate.Checked;
+
+		private void tsmiShowWeekday_CheckedChanged(object sender, EventArgs e) =>
+			cbShowWeekday.Checked = tsmiShowWeekday.Checked;
+
+		private void cbShowWeekday_CheckedChanged(object sender, EventArgs e) =>
+			tsmiShowWeekday.Checked = cbShowWeekday.Checked;
+
+		private void tsmiQuit_Click(object sender, EventArgs e) => this.Close();
+		
+
+		
 	}
 }
