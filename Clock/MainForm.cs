@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace Clock
 {
@@ -142,6 +143,15 @@ namespace Clock
 			{
 				labelTime.Font = fontDialog.Font;
 			}
+		}
+
+		private void tsmiAutoStart_CheckedChanged(object sender, EventArgs e)
+		{
+			string key_name = "clockPV_521";
+			RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",true);//true - открыть ветку на запись
+			if(tsmiAutoStart.Checked)rk.SetValue(key_name,Application.ExecutablePath);//false - не бросать исключение, если данная запись отсутствует в реестре
+			else rk.DeleteValue(key_name,false);
+			rk.Dispose();//Освобождение ресурсов
 		}
 	}
 }
