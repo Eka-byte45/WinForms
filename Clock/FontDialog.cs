@@ -26,12 +26,13 @@ namespace Clock
 			LoadFonts("*.otf");
 			comboBoxFont.SelectedIndex = 1;
 		}
-		public FontDialog(string font_name):this()
+		public FontDialog(string font_name,string font_size):this()
 		{
 			Filename = font_name;
+			if(font_size!= null)numericUpDownFontSize.Value = Convert.ToDecimal(font_size);
 			lastChosenIndex = comboBoxFont.FindString(font_name);
 			if (lastChosenIndex == -1) lastChosenIndex = 2;
-			comboBoxFont.SelectedIndex = lastChosenIndex; ;
+			comboBoxFont.SelectedIndex = lastChosenIndex; 
 			SetFont();
 			Font = labelExample.Font;
 		}
