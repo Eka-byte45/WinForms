@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.IO;
 
 namespace Clock
 {
@@ -32,8 +33,7 @@ namespace Clock
 			fontDialog = new FontDialog();
 			foregroundColorDialog = new ColorDialog();
 			backgroundColorDialog = new ColorDialog();
-			this.TopMost = tsmiTopmost.Checked = true;
-			
+			LoadSettings();	
 		}
 		void SetVisibility(bool visible)
 		{
@@ -43,6 +43,69 @@ namespace Clock
 			this.ShowInTaskbar = visible;
 			this.FormBorderStyle = visible ? FormBorderStyle.FixedSingle : FormBorderStyle.None;
 			this.TransparencyKey = visible ? Color.Empty : this.BackColor;
+		}
+		void SaveSettings()
+		{
+			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
+			//MessageBox.Show
+			//	(
+			//	this, 
+			//	Directory.GetCurrentDirectory(),
+			//	"Settings path",
+			//	MessageBoxButtons.OK,
+			//	MessageBoxIcon.Information
+			//	);
+			StreamWriter writer = new StreamWriter("Settings.ini");
+			writer.WriteLine(this.Location.X);
+			writer.WriteLine(this.Location.Y);
+
+			writer.WriteLine(tsmiTopmost.Checked);
+			writer.WriteLine(tsmiShowControls.Checked);
+			writer.WriteLine(tsmiShowConsole.Checked);
+
+			writer.WriteLine(tsmiShowDate.Checked);
+			writer.WriteLine(tsmiShowWeekday.Checked);
+			writer.WriteLine(tsmiAutoStart.Checked);
+			writer.WriteLine(tsmiAutoStart.Checked);
+
+			writer.WriteLine(labelTime.BackColor.ToArgb());	
+			writer.WriteLine(labelTime.ForeColor.ToArgb());
+			
+			writer.WriteLine(labelTime.Font.Name);
+
+			writer.Close();
+			System.Diagnostics.Process.Start("notepad", "Settings.ini");
+		}
+		void LoadSettings()
+		{
+			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
+			try
+			{
+				StreamReader reader = new StreamReader("Settings.ini");
+
+				this.Location = new Point
+					(
+					Convert.ToInt32(reader.ReadLine()),
+					Convert.ToInt32(reader.ReadLine())
+					);
+
+				this.TopMost = tsmiTopmost.Checked = bool.Parse(reader.ReadLine());
+				tsmiTopmost.Checked = bool.Parse(reader.ReadLine());
+				tsmiShowControls.Checked = bool.Parse(reader.ReadLine());
+				tsmiShowConsole.Checked = bool.Parse(reader.ReadLine());
+				tsmiShowDate.Checked = bool.Parse(reader.ReadLine());
+				tsmiShowWeekday.Checked = bool.Parse(reader.ReadLine());
+				tsmiAutoStart.Checked = bool.Parse(reader.ReadLine());
+
+				labelTime.BackColor = backgroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
+				labelTime.ForeColor = foregroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
+
+				reader.Close();
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show(this, ex.Message, "Settings issue", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 		}
 		private void timer_Tick(object sender, EventArgs e)
 		{
@@ -152,6 +215,11 @@ namespace Clock
 			if(tsmiAutoStart.Checked)rk.SetValue(key_name,Application.ExecutablePath);//false - не бросать исключение, если данная запись отсутствует в реестре
 			else rk.DeleteValue(key_name,false);
 			rk.Dispose();//Освобождение ресурсов
+		}
+
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			SaveSettings();
 		}
 	}
 }

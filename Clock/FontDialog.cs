@@ -62,6 +62,7 @@ namespace Clock
 		}
 		void SetFont()
 		{
+			Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..\\Fonts");
 			PrivateFontCollection pfc = new PrivateFontCollection();
 			//pfc.AddFontFile(filename);
 			pfc.AddFontFile(comboBoxFont.SelectedItem.ToString());
