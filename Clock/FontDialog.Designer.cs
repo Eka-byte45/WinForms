@@ -117,6 +117,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "FontDialog";
 			this.TopMost = true;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FontDialog_FormClosing);
 			this.Load += new System.EventHandler(this.FontDialog_Load);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).EndInit();
 			this.ResumeLayout(false);

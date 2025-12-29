@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Diagnostics;
+using System.Globalization;
+
 
 namespace Clock
 {
@@ -33,7 +37,8 @@ namespace Clock
 			foregroundColorDialog = new ColorDialog();
 			backgroundColorDialog = new ColorDialog();
 			this.TopMost = tsmiTopmost.Checked = true;
-			
+			LoadSettings();
+
 		}
 		void SetVisibility(bool visible)
 		{
@@ -43,6 +48,42 @@ namespace Clock
 			this.ShowInTaskbar = visible;
 			this.FormBorderStyle = visible ? FormBorderStyle.FixedSingle : FormBorderStyle.None;
 			this.TransparencyKey = visible ? Color.Empty : this.BackColor;
+		}
+		void SaveSettings()
+		{
+			StreamWriter streamWrite = new StreamWriter("settings.txt");
+			streamWrite.WriteLine(backgroundColorDialog.Color.ToArgb());
+			streamWrite.WriteLine(foregroundColorDialog.Color.ToArgb());
+			streamWrite.WriteLine(tsmiTopmost.Checked);
+			streamWrite.WriteLine(tsmiShowDate.Checked);
+			streamWrite.WriteLine(tsmiShowWeekday.Checked);
+		
+			streamWrite.Close();
+			Process.Start("notepad", "settings.txt");
+		}
+		void LoadSettings()
+		{
+			StreamReader streamReader = new StreamReader("settings.txt");
+			List<string> settings = new List<string>();
+			while (!streamReader.EndOfStream)
+			{
+				settings.Add(streamReader.ReadLine());
+			}
+			streamReader.Close();
+			string[]arr = settings.ToArray();
+			if (arr.Length >= 5)
+			{
+				backgroundColorDialog.Color = Color.FromArgb(int.Parse(arr[0]));
+				foregroundColorDialog.Color = Color.FromArgb(int.Parse(arr[1]));
+
+				labelTime.BackColor = backgroundColorDialog.Color;
+				labelTime.ForeColor = foregroundColorDialog.Color;
+
+				tsmiTopmost.Checked = bool.Parse(arr[2]);
+				tsmiShowDate.Checked = bool.Parse(arr[3]);
+				tsmiShowWeekday.Checked = bool.Parse(arr[4]);	
+			}
+
 		}
 		private void timer_Tick(object sender, EventArgs e)
 		{
@@ -152,6 +193,11 @@ namespace Clock
 			if(tsmiAutoStart.Checked)rk.SetValue(key_name,Application.ExecutablePath);//false - не бросать исключение, если данная запись отсутствует в реестре
 			else rk.DeleteValue(key_name,false);
 			rk.Dispose();//Освобождение ресурсов
+		}
+
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			SaveSettings();
 		}
 	}
 }

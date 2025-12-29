@@ -24,6 +24,7 @@ namespace Clock
 			LoadFonts("*.ttf");
 			LoadFonts("*.otf");
 			comboBoxFont.SelectedIndex = 1;
+			LoadFontSettings();
 		}
 
 		private void FontDialog_Load(object sender, EventArgs e)
@@ -68,11 +69,36 @@ namespace Clock
 			labelExample.Font = new Font(pfc.Families[0], (float)numericUpDownFontSize.Value);
 
 		}
+		void SaveFontSettings()
+		{
+			string filename = Path.Combine(Application.StartupPath, "font_settings.txt");
+			StreamWriter writer = new StreamWriter(filename);
+			writer.WriteLine(lastChosenIndex); // Индекс выбранного шрифта
+			writer.WriteLine(numericUpDownFontSize.Value); // Размер шрифта
+			writer.Close(); // Ручное закрытие потока
+		}
 
+		void LoadFontSettings()
+		{
+			string filename = Path.Combine(Application.StartupPath, "font_settings.txt");
+			if (File.Exists(filename))
+			{
+				StreamReader reader = new StreamReader(filename);
+				int index = int.Parse(reader.ReadLine());
+				decimal size = decimal.Parse(reader.ReadLine());
+
+				// Применяем последний выбранный шрифт
+				comboBoxFont.SelectedIndex = index;
+				numericUpDownFontSize.Value = size;
+				SetFont(); // Устанавливаем шрифт на примере
+				reader.Close(); // Ручное закрытие потока
+			}
+		}
 		private void buttonOK_Click(object sender, EventArgs e)
 		{
 			this.Font = labelExample.Font;
 			this.lastChosenIndex = comboBoxFont.SelectedIndex;
+			SaveFontSettings();
 
 		}
 
@@ -85,6 +111,11 @@ namespace Clock
 		private void numericUpDownFontSize_ValueChanged(object sender, EventArgs e)
 		{
 			SetFont();
+		}
+
+		private void FontDialog_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			SaveFontSettings();
 		}
 	}
 }
