@@ -40,9 +40,9 @@
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.label1.Location = new System.Drawing.Point(235, 25);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(97, 33);
+			this.label1.Size = new System.Drawing.Size(113, 33);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Alarm";
+			this.label1.Text = "Alarms";
 			// 
 			// buttonAdd
 			// 
