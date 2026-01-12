@@ -20,6 +20,7 @@ namespace Clock
 		string selectedSong = "";
 		string audioFolderPath = ""; // Полный путь к папке с аудиофайлами
         public DateTime alarmTime { get; set; } = DateTime.MinValue;
+	
 		public Alarm(MainForm parentForm)
 		{
 			InitializeComponent();
@@ -121,14 +122,18 @@ namespace Clock
 				return;
 			}
 			alarmTime = dtpActivationDate.Value;
+			selectedSong = comboBoxAudio.SelectedItem.ToString();
+			string fullPath = Path.Combine(audioFolderPath, selectedSong);
+	
 			Console.WriteLine($"Установлено время будильника: {alarmTime}");
 			MessageBox.Show($"Будильник установлен на {dtpActivationDate.Value.ToString("dd/MM/yyyy HH:mm")}.", "Будильник", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
-		
+
 		public void ResetAlarm()
 		{
 			alarmTime = DateTime.MinValue;
 		}
+
 	}
 
 }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace Clock
 {
@@ -25,9 +26,10 @@ namespace Clock
 								  //Здесь устанавливаем положение окна в правом верхнем углу экрана
 
 			alarmForm = new Alarm(this);
-			// Настройка таймера на проверку каждый полсекунды
-			timer.Interval = 500;
+			
+			timer.Interval = 200;
 			timer.Tick += new EventHandler(timer_Tick); // Подписываемся на событие тикера
+			timer.Start();
 
 			this.StartPosition = FormStartPosition.Manual;//Здесь мы говорим программе, что мы сами устанавливаем начальное положение окна
 			this.Location = new Point
@@ -146,6 +148,7 @@ namespace Clock
 		}
 		void CheckAlarm()
 		{
+			
 			if (alarmForm.alarmTime != DateTime.MinValue && DateTime.Now >= alarmForm.alarmTime)
 			{
 				MessageBox.Show("Будильник сработал!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -161,6 +164,7 @@ namespace Clock
 				System.Globalization.CultureInfo.InvariantCulture//CultureInfo.InvariantCulture - задает универсальный формат времени
 																 //независимо от текущих региональных настроек
 				);
+			
 			//if(cbShowDate.Checked )
 			//{
 			//	labelTime.Text += "\n";
