@@ -47,8 +47,8 @@ namespace Clock
 
 		protected override void OnShown(EventArgs e)
 		{
-			base.OnShown(e);
-			PositionRelativeToParent();
+			base.OnShown(e);// Вызов базового поведения
+			PositionRelativeToParent();//// Позиционирование формы относительно родительской
 		}
 
 		private void PositionRelativeToParent()
