@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clock
 {
-	internal class Week
+	public class Week
 	{
 		static readonly string[] NAMES = { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
 		byte days;
@@ -22,7 +22,7 @@ namespace Clock
 				byte day = (byte)(1 << i);
 				if ((this.days & day) != 0) days +=$"{NAMES[i]},";
 			}
-			return base.ToString();
+			return days;
 			/*
 			 * -----------------------------------
 			 *~NOT - побитовое отрицание (инверсия - это унарная операция,при которой 1 заменяются на 0, а нули единицами)

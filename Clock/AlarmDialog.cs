@@ -13,12 +13,14 @@ namespace Clock
 	public partial class AlarmDialog : Form
 	{
 		OpenFileDialog fileDialog;
+		public Alarm Alarm { get; private set; }
 		public AlarmDialog()
 		{
 			InitializeComponent();
 			dtpDate.Enabled = false;
 			fileDialog = new OpenFileDialog();
 			fileDialog.Filter = "All sound files(*.mp3;*.flac;*.flacc)|*.mp3;*.flac;*.flacc|mp3 files (*.mp3)|*.mp3|Flac files(*.flac)|*.flac;*.flacc";
+			Alarm = new Alarm();
 		}
 
 		private void checkBoxUseDate_CheckedChanged(object sender, EventArgs e)
@@ -45,20 +47,19 @@ namespace Clock
 			Console.WriteLine("clbWeekDays_SelectedIndexChanged");
 			for (int i = 0; i < clbWeekDays.CheckedItems.Count; i++)
 			
-				Console.Write($"{clbWeekDays.CheckedItems[i]}\t");
-                Console.WriteLine();
-				byte days = 0;
+			Console.Write($"{clbWeekDays.CheckedItems[i]}\t");
+            Console.WriteLine();
+			byte days = 0;
 
-				for(int i = 0; i<clbWeekDays.CheckedIndices.Count;++i)
-				{
-				    days | = (byte)(1<<clbWeekDays.CheckedIndices[i]);
-					Console.Write($"{clbWeekDays.CheckedIndices.Count}");
+			for(int i = 0; i<clbWeekDays.CheckedIndices.Count;++i)
+			{
+				 days |= (byte)(1 << clbWeekDays.CheckedIndices[i]);
+				 Console.Write($"{clbWeekDays.CheckedIndices.Count}");
 					
-				}
-                Console.WriteLine($"Days mask:{days}");
-				Console.WriteLine("\n-------------------------\n");
+			}
+            Console.WriteLine($"Days mask:{days}");
+			Console.WriteLine("\n-------------------------\n");
 			
-
 		}
 		byte GetDaysMask()
 		{
@@ -66,6 +67,14 @@ namespace Clock
 			for (int i = 0; i < clbWeekDays.CheckedIndices.Count; i++)
 				days |= (byte)(1 << clbWeekDays.CheckedIndices[i]);
 			return days;
+		}
+
+		private void buttonOk_Click(object sender, EventArgs e)
+		{
+			Alarm.Date = checkBoxUseDate.Checked ? dtpDate.Value : DateTime.MaxValue;
+			Alarm.Time = dtpTime.Value;
+			Alarm.Days = new Week(GetDaysMask());
+			Alarm.Filename = labelFilename.Text;
 		}
 	}
 }
