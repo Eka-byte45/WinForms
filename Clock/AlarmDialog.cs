@@ -76,5 +76,38 @@ namespace Clock
 			Alarm.Days = new Week(GetDaysMask());
 			Alarm.Filename = labelFilename.Text;
 		}
+
+		public void PrepareAlarmForEdit (Alarm originalAlarm)
+		{
+			Alarm copyAlarm = new Alarm();
+			copyAlarm.Date = originalAlarm.Date;
+			copyAlarm.Time = originalAlarm.Time;
+			copyAlarm.Days = new Week((byte)originalAlarm.Days.DaysMask);
+			copyAlarm.Filename = originalAlarm.Filename;
+
+			this.Alarm = copyAlarm;
+
+			// Заполняем поля формы значениями из выбранного будильника
+			if (copyAlarm.Date == DateTime.MaxValue)
+			{
+				checkBoxUseDate.Checked = false;
+				dtpDate.Enabled = false;
+			}
+			else
+			{
+				checkBoxUseDate.Checked = true;
+				dtpDate.Value = originalAlarm.Date;
+				dtpDate.Enabled = true;
+			}
+
+			dtpTime.Value = copyAlarm.Time;
+			labelFilename.Text = copyAlarm.Filename;
+
+			// Устанавливаем дни повторения согласно маске
+			for (int i = 0; i < 7; ++i)
+			{
+				clbWeekDays.SetItemChecked(i, (originalAlarm.Days.DaysMask & (1 << i)) != 0);
+			}
+		}
 	}
 }

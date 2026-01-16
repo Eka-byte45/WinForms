@@ -21,11 +21,29 @@ namespace Clock
 
 		private void buttonAdd_Click(object sender, EventArgs e)
 		{
-			if(alarm.ShowDialog() == DialogResult.OK)
+			
+			if (alarm.ShowDialog() == DialogResult.OK)
 			{
 				listBoxAlarms.Items.Add(alarm.Alarm);
 			}
 			alarm.ShowDialog();
+		}
+
+		private void listBoxAlarms_DoubleClick(object sender, EventArgs e)
+		{
+			if(listBoxAlarms.SelectedItem is Alarm selectedAlarm)
+			{
+				AlarmDialog alarmDialog = new AlarmDialog();
+				alarmDialog.PrepareAlarmForEdit(selectedAlarm);
+				if(alarmDialog.ShowDialog() == DialogResult.OK)
+				{
+					listBoxAlarms.Items[listBoxAlarms.SelectedIndex]=alarmDialog.Alarm;
+
+				}
+				alarmDialog.Dispose();
+
+			}
+			
 		}
 	}
 }
