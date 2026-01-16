@@ -87,7 +87,6 @@ namespace Clock
 
 			this.Alarm = copyAlarm;
 
-			// Заполняем поля формы значениями из выбранного будильника
 			if (copyAlarm.Date == DateTime.MaxValue)
 			{
 				checkBoxUseDate.Checked = false;
@@ -103,7 +102,6 @@ namespace Clock
 			dtpTime.Value = copyAlarm.Time;
 			labelFilename.Text = copyAlarm.Filename;
 
-			// Устанавливаем дни повторения согласно маске
 			for (int i = 0; i < 7; ++i)
 			{
 				clbWeekDays.SetItemChecked(i, (originalAlarm.Days.DaysMask & (1 << i)) != 0);
