@@ -70,6 +70,7 @@
 			this.Controls.Add(this.buttonAdd);
 			this.Controls.Add(this.listBoxAlarms);
 			this.Name = "AlarmsForm";
+			this.ShowInTaskbar = false;
 			this.Text = "Alarms";
 			this.ResumeLayout(false);
 
