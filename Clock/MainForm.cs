@@ -37,6 +37,7 @@ namespace Clock
 			foregroundColorDialog = new ColorDialog();
 			backgroundColorDialog = new ColorDialog();
 			alarms = new AlarmsForm();
+			alarms.LoadAlarms();
 			alarm = null;
 			LoadSettings();	
 		}
@@ -239,6 +240,8 @@ namespace Clock
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			SaveSettings();
+			string fileName = Path.Combine(Application.StartupPath, "Alarms.ini");
+			alarms.SaveAlarms(fileName);
 		}
 
 		private void tsmiAlarms_Click(object sender, EventArgs e)
@@ -255,5 +258,6 @@ namespace Clock
 		public static extern void AllocConsole();
 		[DllImport("kernel32.dll")]
 		public static extern void FreeConsole();
+
 	}
 }

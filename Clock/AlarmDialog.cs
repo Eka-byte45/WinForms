@@ -94,5 +94,7 @@ namespace Clock
 			Alarm.Days = new Week(checkBoxUseDate.Checked ? (byte)0 : GetDaysMask());
 			Alarm.Filename = labelFilename.Text;
 		}
+
+		
 	}
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clock
 {
-	public class Alarm
+	public class Alarm : IComparable<Alarm>
 	{
 		public DateTime Date {  get; set; }
 		public TimeSpan Time { get; set; }
@@ -19,6 +19,14 @@ namespace Clock
 			this.Time = other.Time;
 			this.Days = other.Days;
 			this.Filename = other.Filename;
+		}
+		public int CompareTo(Alarm other)//Метод для сравнения двух экземпляров класса Alarm
+		{
+			if (other == null) return 1;
+			int timeComparison = Time.CompareTo(other.Time);
+			if (timeComparison != 0) return timeComparison;
+
+			return Date.CompareTo(other.Date);
 		}
 		public override string ToString()
 		{
