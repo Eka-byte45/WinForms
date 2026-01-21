@@ -91,10 +91,20 @@ namespace Clock
 
 		private void buttonOk_Click(object sender, EventArgs e)
 		{
+			//if (clbWeekDays.CheckedIndices.Count == 0)
+			//{
+			//	MessageBox.Show(this, "выберите хотя бы один день недели", "Ошибка выбора", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			//	return;
+			//}
+			//else this.buttonOk.DialogResult = DialogResult.OK;
 			Alarm.Date = checkBoxUseDate.Checked ? dtpDate.Value : DateTime.MaxValue;
 			Alarm.Time = dtpTime.Value.TimeOfDay;
-			Alarm.Days = new Week(checkBoxUseDate.Checked ? (byte)0 : GetDaysMask());
+			Alarm.Days = new Week(GetDaysMask());
+			//Alarm.Days = new Week(checkBoxUseDate.Checked ? (byte)0 : GetDaysMask());
+			if (Alarm.Days.GetMask() == 0) Alarm.Days = new Week(127);
 			Alarm.Filename = labelFilename.Text;
+			//this.DialogResult = DialogResult.OK;
 		}
+		
 	}
 }
