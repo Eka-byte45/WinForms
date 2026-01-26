@@ -37,6 +37,7 @@ namespace Clock
 			foregroundColorDialog = new ColorDialog();
 			backgroundColorDialog = new ColorDialog();
 			alarms = new AlarmsForm();
+			alarms.LoadAlarms();
 			alarm = null;
 			LoadSettings();	
 			axWindowsMediaPlayer.Visible = false;
