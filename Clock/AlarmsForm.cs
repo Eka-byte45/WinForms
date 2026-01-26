@@ -106,7 +106,6 @@ namespace Clock
 			}
 			return new Week(daysMask);
 		}
-
 		private void buttonDelete_Click(object sender, EventArgs e)
 		{
 			int selectedIndex = listBoxAlarms.SelectedIndex;
