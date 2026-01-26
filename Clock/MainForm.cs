@@ -265,7 +265,8 @@ namespace Clock
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			SaveSettings();
-			
+			string fileName = Path.Combine(Application.StartupPath, "Alarms.ini");
+			alarms.SaveAlarms(fileName);
 		}
 
 		private void tsmiAlarms_Click(object sender, EventArgs e)
