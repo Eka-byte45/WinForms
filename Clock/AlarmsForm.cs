@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +44,19 @@ namespace Clock
 			{
 				buttonAdd_Click(sender, e);
 			}
+		}
+
+		public void SaveAlarms(string filename)
+		{
+			StreamWriter writer = new StreamWriter(filename);
+			foreach (Alarm alarm in listBoxAlarms.Items)
+			{
+				writer.WriteLine(alarm.ToString());
+
+			}
+			writer.Close();
+			Process.Start("notepad", filename);
+
 		}
 	}
 }
