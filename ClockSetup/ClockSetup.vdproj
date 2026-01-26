@@ -111,6 +111,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A46E14D6D2B54962BE9797B5668D8631"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A85BCF3199F54288B83B5B6F223F7540"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -124,18 +130,12 @@
         "Entry"
         {
         "MsmKey" = "8:_A88E7B6BF3541FC40FE0BAD0439D4526"
-        "OwnerKey" = "8:_ABA09D14793C4E549C1FC95BDD1E6EF9"
+        "OwnerKey" = "8:_A46E14D6D2B54962BE9797B5668D8631"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_A9D6DC03FEFE4C82AD37E2080A4F32E5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_ABA09D14793C4E549C1FC95BDD1E6EF9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -178,7 +178,7 @@
         "Entry"
         {
         "MsmKey" = "8:_E6C928957A5FAC38D81E20416549A012"
-        "OwnerKey" = "8:_ABA09D14793C4E549C1FC95BDD1E6EF9"
+        "OwnerKey" = "8:_A46E14D6D2B54962BE9797B5668D8631"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -196,7 +196,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ABA09D14793C4E549C1FC95BDD1E6EF9"
+        "OwnerKey" = "8:_A46E14D6D2B54962BE9797B5668D8631"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -626,6 +626,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A46E14D6D2B54962BE9797B5668D8631"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Clock, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A46E14D6D2B54962BE9797B5668D8631"
+                    {
+                    "Name" = "8:Clock.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Clock\\bin\\Debug\\Clock.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_EF2F7D2975C14C5C9F5209ED98E540D5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A85BCF3199F54288B83B5B6F223F7540"
             {
             "SourcePath" = "8:..\\Clock\\Fonts\\Terminat.ttf"
@@ -683,37 +714,6 @@
             "TargetName" = "8:DIGITALDREAMFATSKEWNARROW.ttf"
             "Tag" = "8:"
             "Folder" = "8:_32BFC1C6ADEE4F62B318F542FF183C57"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ABA09D14793C4E549C1FC95BDD1E6EF9"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Clock, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_ABA09D14793C4E549C1FC95BDD1E6EF9"
-                    {
-                    "Name" = "8:Clock.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\Clock\\bin\\Debug\\Clock.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_EF2F7D2975C14C5C9F5209ED98E540D5"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1009,7 +1009,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ClockPV_521"
         "ProductCode" = "8:{29DA8889-1A17-411D-83D0-A0F58C702246}"
-        "PackageCode" = "8:{AB3F6D4D-101C-4868-A61D-D5364ABC1B35}"
+        "PackageCode" = "8:{C0858D4D-8D7D-4EF8-BC9D-8C36A292E886}"
         "UpgradeCode" = "8:{FEE8C333-C9D2-47EA-A02D-C6930E7B2BC4}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -1137,7 +1137,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_ABA09D14793C4E549C1FC95BDD1E6EF9"
+            "Target" = "8:"
             "Folder" = "8:_2A54771F0CD6485783E098BF4B26CD0F"
             "WorkingFolder" = "8:_EF2F7D2975C14C5C9F5209ED98E540D5"
             "Icon" = "8:_4A62E9A0D4164511AAB2D4D1F36BEB73"
@@ -1151,8 +1151,8 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_ABA09D14793C4E549C1FC95BDD1E6EF9"
-            "Folder" = "8:_EF2F7D2975C14C5C9F5209ED98E540D5"
+            "Target" = "8:"
+            "Folder" = "8:_9F39207BF21642FC902261AD3E202A4D"
             "WorkingFolder" = "8:_EF2F7D2975C14C5C9F5209ED98E540D5"
             "Icon" = "8:_4A62E9A0D4164511AAB2D4D1F36BEB73"
             "Feature" = "8:"
@@ -1165,7 +1165,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_ABA09D14793C4E549C1FC95BDD1E6EF9"
+            "Target" = "8:"
             "Folder" = "8:_17DE755C19CA4781BF3165CEDC66730D"
             "WorkingFolder" = "8:_EF2F7D2975C14C5C9F5209ED98E540D5"
             "Icon" = "8:_4A62E9A0D4164511AAB2D4D1F36BEB73"

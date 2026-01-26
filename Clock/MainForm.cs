@@ -265,6 +265,7 @@ namespace Clock
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			SaveSettings();
+			
 		}
 
 		private void tsmiAlarms_Click(object sender, EventArgs e)
